@@ -1,0 +1,47 @@
+# Cloud Remediation MVP
+
+A cloud security remediation control plane designed to transform security findings into governed, executable, and verifiable remediation workflows.
+
+## Overview
+
+Cloud environments generate security findings across infrastructure, identities, networks, and services. Identifying a security issue is only the beginning of the remediation process. Organizations must also determine which resource is affected, who owns it, how it is managed, what remediation is appropriate, whether the change requires approval, and whether the issue has actually been resolved.
+
+Cloud Remediation MVP explores an approach to addressing this challenge by connecting security findings with resource inventory, remediation decision-making, governance, controlled execution, and independent verification.
+
+The platform is designed around a cloud-agnostic architecture, with AWS serving as the initial implementation environment.
+
+## Initial Project Scope
+
+The initial development milestone establishes the AWS S3 security baseline and the foundation for a remediation workflow.
+
+The initial scope includes:
+
+- Establishing an AWS S3 security baseline.
+- Defining infrastructure configuration through Terraform.
+- Creating the foundation for identifying and addressing cloud security misconfigurations.
+
+## Project Direction
+
+The project aims to advance a risk-governed remediation lifecycle:
+
+1. Detect security findings.
+2. Normalize findings and identify affected resources.
+3. Determine resource ownership and management context.
+4. Assess risk and select appropriate remediation.
+5. Establish governance and approval requirements.
+6. Execute authorized remediation.
+7. Independently verify the resulting configuration.
+8. Reconcile the outcome with the original security finding.
+
+The initial implementation focuses on AWS. Support for additional cloud providers is a longer-term architectural objective, not a claim of current multi-cloud implementation.
+
+## Technology Stack
+
+- Amazon Web Services (AWS)
+- Terraform
+- Python
+- Git
+
+## License
+
+This project is licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
