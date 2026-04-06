@@ -1,0 +1,59 @@
+# Terraform working directory
+**/.terraform/*
+
+# Terraform state and plans
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.plan
+
+# Terraform crash logs
+crash.log
+crash.*.log
+
+# Terraform variable files
+*.tfvars
+*.tfvars.json
+
+# Terraform override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform CLI configuration
+.terraformrc
+terraform.rc
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python generated files
+__pycache__/
+*.py[cod]
+*.bak
+*.bak*
+
+# Generated AWS findings and inventory
+findings/securityhub_findings.json
+findings/inventory_matches.json
+inventory/inventory.json
+
+# Temporary project status documents pending review
+PROJECT_STATUS*.docx
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Unidentified local file
+aws-s3-baseline/visualstudio
+
+# Live execution and audit evidence
+remediation/audit/
+
+# Generated live proposals and verification records
+remediation/proposals/*.json
