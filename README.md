@@ -45,3 +45,19 @@ The initial implementation focuses on AWS. Support for additional cloud provider
 ## License
 
 This project is licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
+
+
+## Security Hub Integration and Resource Inventory
+
+The next development milestone introduced integration with AWS Security Hub to retrieve cloud security findings and connect them with an inventory of discovered AWS resources.
+
+This established an important foundation for the remediation platform: security findings need to be associated with identifiable infrastructure resources before meaningful remediation decisions can be made.
+
+The implementation introduced:
+
+- A Python-based AWS Security Hub findings adapter.
+- Resource inventory collection for identifying AWS infrastructure.
+- Initial integration between security findings and discovered resource information.
+- A foundation for determining which infrastructure resources are associated with reported security issues.
+
+This milestone moved the project beyond establishing a security baseline toward building a finding-to-resource identification workflow.
