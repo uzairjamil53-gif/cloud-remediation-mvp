@@ -71,3 +71,46 @@ Future development is expected to introduce:
 - Support for additional cloud providers.
 
 These capabilities represent the intended development direction and are not claims about the initial implementation.
+
+
+## 7. Security Hub Integration and Resource Inventory
+
+The next architectural milestone introduced the ability to retrieve cloud security findings from AWS Security Hub and associate them with discovered AWS infrastructure resources.
+
+This expanded the project beyond managing an initial security baseline toward identifying security issues within an existing cloud environment.
+
+The architecture introduced two important capabilities:
+
+### 7.1 Security Finding Ingestion
+
+A Python-based adapter retrieves findings from AWS Security Hub through the AWS CLI.
+
+This establishes a source of security findings that can be processed by downstream remediation components.
+
+### 7.2 Resource Inventory
+
+A resource inventory component discovers AWS resources and records information that can be used to identify infrastructure affected by security findings.
+
+Initial finding-to-resource matching connects finding metadata with discovered resource information.
+
+This establishes the foundation for resource-aware remediation planning.
+
+### 7.3 Architectural Workflow
+
+```text
+AWS Security Hub
+       |
+       v
+Finding Ingestion
+       |
+       v
+Finding Normalization
+       |
+       v
+AWS Resource Inventory
+       |
+       v
+Finding-to-Resource Matching
+```
+
+At this stage, the project established the initial integration between security detection and infrastructure identification. Automated remediation proposal generation and controlled execution were subsequent development milestones.
