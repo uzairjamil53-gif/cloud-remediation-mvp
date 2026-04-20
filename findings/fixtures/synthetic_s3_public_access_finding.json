@@ -1,0 +1,25 @@
+{
+  "test_fixture": true,
+  "fixture_type": "synthetic",
+  "warning": "SIMULATED FINDING — NOT A REAL SECURITY HUB FINDING",
+  "finding_id": "SYNTHETIC-S3-PUBLIC-ACCESS-001",
+  "source": "synthetic_test_fixture",
+  "cloud": "aws",
+  "account_id": "665808487090",
+  "region": "us-east-1",
+  "title": "S3 general purpose buckets should block public access",
+  "severity": "HIGH",
+  "workflow_status": "NEW",
+  "resource_type": "AWS::S3::Bucket",
+  "resource_id": "cloud-remediation-mvp-848f82dd",
+  "evidence": {
+    "observed_configuration": {
+      "block_public_acls": false,
+      "ignore_public_acls": false,
+      "block_public_policy": false,
+      "restrict_public_buckets": false
+    },
+    "evidence_status": "simulated",
+    "note": "These values are hypothetical and do not describe the actual bucket configuration."
+  }
+}

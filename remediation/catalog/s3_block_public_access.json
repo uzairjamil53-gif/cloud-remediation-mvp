@@ -1,0 +1,60 @@
+{
+  "catalog_id": "AWS-S3-BLOCK-PUBLIC-ACCESS-001",
+  "version": "1.0",
+  "name": "Enable all S3 Block Public Access settings",
+  "description": "Ensure an S3 bucket blocks public access through ACLs and bucket policies.",
+  "cloud_provider": "aws",
+  "resource_type": "AWS::S3::Bucket",
+  "finding_match": {
+    "title_contains": "block public access",
+    "severity_supported": [
+      "INFORMATIONAL",
+      "LOW",
+      "MEDIUM",
+      "HIGH",
+      "CRITICAL"
+    ]
+  },
+  "remediation": {
+    "summary": "Enable all four S3 Block Public Access settings.",
+    "rationale": "These settings help prevent public access through S3 ACLs and bucket policies.",
+    "desired_configuration": {
+      "block_public_acls": true,
+      "ignore_public_acls": true,
+      "block_public_policy": true,
+      "restrict_public_buckets": true
+    },
+    "execution_method": "terraform",
+    "execution_status": "proposal_only"
+  },
+  "risk_assessment": {
+    "risk_level": "medium",
+    "potential_side_effects": [
+      "Applications or users relying on public access may lose access.",
+      "Existing public-access-dependent workloads may be disrupted."
+    ],
+    "preconditions": [
+      "Inspect the current bucket configuration.",
+      "Determine whether public access is intentionally required.",
+      "Confirm the resource management mechanism."
+    ]
+  },
+  "governance": {
+    "approval_required": true,
+    "approval_status": "pending",
+    "execution_allowed": false
+  },
+  "validation": {
+    "method": "Read the bucket Block Public Access configuration and confirm all four settings are true.",
+    "success_criteria": [
+      "block_public_acls is true",
+      "ignore_public_acls is true",
+      "block_public_policy is true",
+      "restrict_public_buckets is true"
+    ]
+  },
+  "rollback": {
+    "strategy": "Restore the previously approved configuration through the established management mechanism.",
+    "warning": "Do not automatically disable public-access protections as a rollback without explicit security review and approval."
+  }
+}
