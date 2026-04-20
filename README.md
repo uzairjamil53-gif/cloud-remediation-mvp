@@ -61,3 +61,19 @@ The implementation introduced:
 - A foundation for determining which infrastructure resources are associated with reported security issues.
 
 This milestone moved the project beyond establishing a security baseline toward building a finding-to-resource identification workflow.
+
+## Synthetic Findings and Remediation Proposal Generation
+
+This milestone introduced a structured approach to developing and testing remediation workflows using synthetic security findings.
+
+Synthetic findings provided a controlled way to evaluate how the platform processes security issues before connecting the workflow to live findings.
+
+The implementation introduced:
+
+- Synthetic AWS S3 security finding fixtures.
+- A remediation catalog describing supported remediation actions.
+- A proposal generation component that evaluates findings against available remediation definitions.
+- Structured remediation proposal output.
+- Draft proposal generation with execution disabled by default.
+
+This established the foundation for separating security finding identification from remediation planning. Rather than immediately modifying cloud resources, the platform first produces a structured proposal that can be reviewed and evaluated.
