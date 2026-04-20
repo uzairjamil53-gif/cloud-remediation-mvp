@@ -114,3 +114,50 @@ Finding-to-Resource Matching
 ```
 
 At this stage, the project established the initial integration between security detection and infrastructure identification. Automated remediation proposal generation and controlled execution were subsequent development milestones.
+
+
+## 8. Synthetic Findings and Remediation Proposal Generation
+
+The next development milestone introduced a structured approach to evaluating remediation workflows using synthetic security findings.
+
+Synthetic findings provided a controlled input for developing and testing remediation logic before relying on live security findings.
+
+### 8.1 Synthetic Finding Fixtures
+
+The architecture introduced synthetic finding data representing cloud security misconfigurations.
+
+These fixtures allowed the project to test how security issues could be processed and associated with potential remediation actions.
+
+### 8.2 Remediation Catalog
+
+A structured remediation catalog established a foundation for defining supported corrective actions and their expected configuration changes.
+
+This separated remediation definitions from the logic responsible for processing findings and generating proposals.
+
+### 8.3 Proposal Generation
+
+The proposal generation component processes eligible findings and produces structured remediation proposals.
+
+Proposals represent proposed corrective actions and provide a basis for subsequent review.
+
+New proposals are maintained in a draft state, with execution disabled by default.
+
+### 8.4 Architectural Workflow
+
+```text
+Synthetic Security Finding
+          |
+          v
+Finding Processing
+          |
+          v
+Remediation Catalog
+          |
+          v
+Proposal Generation
+          |
+          v
+Draft Remediation Proposal
+```
+
+At this stage, the project established the distinction between identifying a security issue and generating a structured remediation proposal. Governance, authorization, and controlled execution remained subsequent development stages.
