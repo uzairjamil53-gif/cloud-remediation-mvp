@@ -161,3 +161,51 @@ Draft Remediation Proposal
 ```
 
 At this stage, the project established the distinction between identifying a security issue and generating a structured remediation proposal. Governance, authorization, and controlled execution remained subsequent development stages.
+
+
+## 9. Real Security Hub Finding Remediation Workflow
+
+This milestone extended the proposal-generation architecture to process real security findings retrieved from AWS Security Hub.
+
+The project moved beyond synthetic testing toward generating remediation proposals based on actual cloud security findings and their associated infrastructure resources.
+
+### 9.1 Real Finding Processing
+
+The real finding workflow uses Security Hub finding information to identify security issues and determine the affected AWS resources.
+
+The finding data provides the context needed to evaluate whether a supported remediation action can be proposed.
+
+### 9.2 Resource-Aware Proposal Generation
+
+The proposal-generation workflow uses real finding information and resource context to construct structured remediation proposals.
+
+This establishes a connection between security detection, resource identification, and remediation planning.
+
+### 9.3 Separation of Planning and Execution
+
+Generating a proposal does not modify AWS infrastructure.
+
+The proposal represents a recommended corrective action that can be evaluated through subsequent governance and execution workflows.
+
+### 9.4 Architectural Workflow
+
+```text id="p8q5xk"
+AWS Security Hub Finding
+          |
+          v
+Finding Ingestion
+          |
+          v
+Resource Identification
+          |
+          v
+Remediation Evaluation
+          |
+          v
+Real Finding Proposal
+          |
+          v
+Draft Remediation
+```
+
+This milestone established the initial real-finding remediation workflow. Governance review and controlled infrastructure execution were developed as subsequent capabilities.
