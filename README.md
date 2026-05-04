@@ -77,3 +77,19 @@ The implementation introduced:
 - Draft proposal generation with execution disabled by default.
 
 This established the foundation for separating security finding identification from remediation planning. Rather than immediately modifying cloud resources, the platform first produces a structured proposal that can be reviewed and evaluated.
+
+## Real Security Hub Finding Remediation Workflow
+
+This milestone extended the platform from synthetic testing to processing real security findings retrieved from AWS Security Hub.
+
+The objective was to establish a workflow capable of translating an actual cloud security finding into a structured remediation proposal.
+
+The implementation introduced:
+
+- Retrieval and processing of live AWS Security Hub findings.
+- Mapping of real findings to supported remediation definitions.
+- Identification of affected AWS resources using finding metadata.
+- Generation of remediation proposals from real security findings.
+- Separation of proposal generation from actual remediation execution.
+
+This milestone represented an important progression toward operational remediation workflows by demonstrating how findings from a cloud security service could become actionable remediation proposals.
