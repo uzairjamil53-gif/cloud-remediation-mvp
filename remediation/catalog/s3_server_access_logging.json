@@ -1,0 +1,57 @@
+{
+  "catalog_id": "AWS-S3-SERVER-ACCESS-LOGGING-001",
+  "version": "1.0",
+  "name": "Enable S3 server access logging",
+  "description": "Verify that server access logging is enabled for an S3 general purpose bucket.",
+  "cloud_provider": "aws",
+  "resource_type": "AWS::S3::Bucket",
+  "finding_match": {
+    "security_control_id": "S3.9",
+    "title_contains": "server access logging",
+    "severity_supported": [
+      "LOW",
+      "MEDIUM",
+      "HIGH",
+      "CRITICAL"
+    ]
+  },
+  "remediation": {
+    "summary": "Configure S3 server access logging to an approved destination bucket.",
+    "rationale": "Server access logs provide records of requests made to an S3 bucket and support security investigations and auditing.",
+    "desired_configuration": {
+      "logging_enabled": true
+    },
+    "execution_method": "requires_approved_management_mechanism",
+    "execution_status": "proposal_only"
+  },
+  "risk_assessment": {
+    "risk_level": "medium",
+    "potential_side_effects": [
+      "Additional storage charges may accrue in the destination bucket.",
+      "Log delivery and retention require appropriate destination configuration.",
+      "Logging configuration changes may affect compliance and audit expectations."
+    ],
+    "preconditions": [
+      "Verify the source bucket's live logging configuration.",
+      "Identify and approve a destination bucket in the same AWS Region.",
+      "Check destination bucket permissions and retention requirements.",
+      "Confirm the resource management mechanism before proposing changes."
+    ]
+  },
+  "governance": {
+    "approval_required": true,
+    "approval_status": "pending",
+    "execution_allowed": false
+  },
+  "validation": {
+    "method": "Read the live S3 bucket logging configuration.",
+    "success_criteria": [
+      "An active LoggingEnabled configuration exists.",
+      "The destination bucket and target prefix are recorded for review."
+    ]
+  },
+  "rollback": {
+    "strategy": "Restore the previously approved logging configuration through the established management mechanism.",
+    "warning": "Do not disable existing logging automatically as a rollback without explicit security review and approval."
+  }
+}
