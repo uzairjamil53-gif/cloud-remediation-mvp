@@ -209,3 +209,38 @@ Draft Remediation
 ```
 
 This milestone established the initial real-finding remediation workflow. Governance review and controlled infrastructure execution were developed as subsequent capabilities.
+
+
+## 10. Remediation Governance and Review Architecture
+
+This milestone introduced governance capabilities for evaluating remediation proposals before infrastructure changes are carried out.
+
+The governance workflow provides a structured way to review proposed actions, record decisions, and preserve the rationale and evidence associated with those decisions.
+
+### 10.1 Proposal Review
+
+Remediation proposals can be evaluated before execution. The review process considers the proposed corrective action and its supporting context.
+
+### 10.2 Review Decisions and Audit History
+
+The governance component records review decisions and associated information, including the proposal being reviewed, the decision, and its rationale.
+
+These records establish an auditable history of remediation review.
+
+### 10.3 Separation of Governance and Execution
+
+Governance review and infrastructure execution are distinct responsibilities.
+
+A governance decision records the outcome of a review. It should not be interpreted as proof that an infrastructure change was executed or that the execution engine independently authorized that change.
+
+Controlled execution and its explicit authorization safeguards were developed in a subsequent milestone.
+
+### 10.4 Architectural Workflow
+
+Remediation Proposal
+  → Governance Review
+  → Reviewer Decision
+  → Decision and Rationale Recorded
+  → Auditable Review History
+
+This milestone established the governance and review layer between remediation planning and later controlled execution.
