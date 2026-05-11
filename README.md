@@ -93,3 +93,18 @@ The implementation introduced:
 - Separation of proposal generation from actual remediation execution.
 
 This milestone represented an important progression toward operational remediation workflows by demonstrating how findings from a cloud security service could become actionable remediation proposals.
+
+## Remediation Governance and Review History
+
+This milestone introduced governance capabilities to establish a review process for remediation proposals before execution.
+
+The objective was to ensure that proposed cloud security changes could be evaluated and documented rather than automatically applied as soon as a finding was identified.
+
+The implementation introduced:
+
+- A dedicated remediation governance component.
+- Proposal review and decision tracking.
+- Recording of governance outcomes and review history.
+- Separation of remediation approval decisions from proposal generation and execution.
+
+This established governance as a distinct stage in the remediation lifecycle, providing a foundation for controlled and auditable remediation operations.
