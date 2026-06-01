@@ -244,3 +244,50 @@ Remediation Proposal
   → Auditable Review History
 
 This milestone established the governance and review layer between remediation planning and later controlled execution.
+
+
+## 11. Expanded Resource Inventory and Finding Matching
+
+This milestone expanded the resource inventory and improved the association between AWS Security Hub findings and discovered infrastructure resources.
+
+The architecture moved beyond the initial inventory implementation to support a broader set of AWS resource types and more structured resource identification.
+
+### 11.1 Expanded Resource Discovery
+
+The inventory component collects information about supported AWS resources and records their identifying attributes.
+
+This inventory provides resource context that can be used when evaluating security findings and preparing remediation proposals.
+
+### 11.2 Resource Type Mapping
+
+Security Hub findings and inventory records may represent resources using different resource-type conventions.
+
+The matching workflow uses resource-type mapping and resource identifiers to associate findings with corresponding inventory entries.
+
+### 11.3 Finding Classification and Matching
+
+The matching process distinguishes between:
+
+- Findings successfully associated with an inventoried resource.
+- Resource-related findings that could not be matched.
+- Account-level findings that do not identify an individual infrastructure resource.
+
+This distinction prevents account-level findings from being treated as resource-specific remediation targets without sufficient resource context.
+
+### 11.4 Infrastructure Management Context
+
+The inventory work also introduced management context for identifying resources associated with infrastructure-as-code workflows, including Terraform-managed resources where that information is available.
+
+Management metadata supports later remediation planning, but inventory discovery alone does not establish that every resource can be safely or automatically modified.
+
+### 11.5 Architectural Workflow
+
+AWS Security Hub Findings
+  → Finding Normalization
+  → Resource Type Mapping
+  → AWS Resource Inventory
+  → Resource Identifier Matching
+  → Matched and Unmatched Finding Classification
+  → Resource Context for Remediation Planning
+
+This milestone improved the resource-awareness of the platform. Ownership intelligence and broader cloud-agnostic resource discovery remain separate capabilities rather than assumed outcomes of this AWS inventory implementation.
