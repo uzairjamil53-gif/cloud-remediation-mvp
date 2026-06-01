@@ -108,3 +108,19 @@ The implementation introduced:
 - Separation of remediation approval decisions from proposal generation and execution.
 
 This established governance as a distinct stage in the remediation lifecycle, providing a foundation for controlled and auditable remediation operations.
+
+## Expanded Cloud Resource Inventory and Finding Matching
+
+This milestone expanded the platform's resource inventory and improved its ability to associate security findings with identifiable cloud resources.
+
+As the project evolved, it became clear that retrieving security findings alone was insufficient. The platform also needed to understand the affected resources and their management context to support reliable remediation decisions.
+
+The implementation introduced:
+
+- Expanded AWS resource discovery across additional resource types.
+- Improved resource identification and finding-to-inventory matching.
+- Resource type mapping to normalize differences between Security Hub findings and inventory representations.
+- Improved handling of unmatched resource findings and account-level findings.
+- Initial identification of infrastructure managed through Terraform.
+
+This milestone strengthened the resource identification layer and established a foundation for determining how affected resources are managed before proposing remediation.
