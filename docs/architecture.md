@@ -291,3 +291,52 @@ AWS Security Hub Findings
   → Resource Context for Remediation Planning
 
 This milestone improved the resource-awareness of the platform. Ownership intelligence and broader cloud-agnostic resource discovery remain separate capabilities rather than assumed outcomes of this AWS inventory implementation.
+
+
+## 12. Controlled Remediation Execution Framework
+
+This milestone introduced the controlled execution architecture for carrying out approved and explicitly authorized remediation actions.
+
+The execution engine provides a structured boundary between remediation planning and infrastructure modification. Its purpose is to ensure that proposed changes are validated and reviewed before they are applied.
+
+### 12.1 Terraform Plan Validation
+
+The execution workflow uses a saved Terraform plan as the basis for evaluating the intended infrastructure change.
+
+Before execution, the platform validates the plan and checks that its proposed resource changes match the expected remediation scope.
+
+### 12.2 Execution Safety Checks
+
+The controlled execution process includes safeguards such as:
+
+- Confirming the expected AWS account and region.
+- Validating the target resource and expected Terraform changes.
+- Checking saved-plan integrity.
+- Reviewing the planned additions, modifications, and deletions.
+- Requiring explicit authorization tied to the remediation proposal.
+
+These checks help prevent an execution from applying an unexpected or incorrectly scoped infrastructure change.
+
+### 12.3 Controlled Execution
+
+After validation and explicit authorization, the execution engine applies the saved Terraform plan.
+
+Execution results are recorded as evidence so that subsequent verification and audit workflows can distinguish an attempted change from a successfully completed change.
+
+### 12.4 Separation of Execution and Verification
+
+Successful infrastructure execution does not, by itself, establish that the security issue has been resolved.
+
+Verification is a separate step that evaluates the resulting cloud configuration against the expected security condition.
+
+### 12.5 Architectural Workflow
+
+Remediation Proposal
+  → Terraform Plan Generation
+  → Saved Plan Validation
+  → Account and Resource Confirmation
+  → Explicit Execution Authorization
+  → Controlled Terraform Apply
+  → Execution Evidence
+
+This milestone established the controlled execution layer. Independent verification and reconciliation with Security Hub were developed and strengthened in subsequent milestones.
