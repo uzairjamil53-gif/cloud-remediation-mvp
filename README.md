@@ -124,3 +124,20 @@ The implementation introduced:
 - Initial identification of infrastructure managed through Terraform.
 
 This milestone strengthened the resource identification layer and established a foundation for determining how affected resources are managed before proposing remediation.
+
+## Controlled Remediation Execution Framework
+
+This milestone introduced the foundation for controlled remediation execution, extending the platform beyond finding identification, resource inventory, proposal generation, and governance.
+
+The objective was to establish a mechanism for executing approved infrastructure changes while maintaining safeguards around the resources being modified.
+
+The implementation introduced:
+
+- A dedicated remediation execution engine.
+- Integration with Terraform-based remediation workflows.
+- Validation of Terraform plans before execution.
+- Explicit proposal identification and authorization requirements.
+- Execution controls designed to prevent unreviewed infrastructure changes.
+- Execution evidence to support auditability and subsequent verification.
+
+This milestone established controlled execution as a distinct component of the remediation lifecycle, separating the decision to remediate from the actual modification of cloud infrastructure.
