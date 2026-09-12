@@ -141,3 +141,20 @@ The implementation introduced:
 - Execution evidence to support auditability and subsequent verification.
 
 This milestone established controlled execution as a distinct component of the remediation lifecycle, separating the decision to remediate from the actual modification of cloud infrastructure.
+
+## S3 TLS Enforcement Remediation Workflow
+
+This milestone introduced the S3 TLS enforcement remediation workflow, demonstrating how the platform could translate a real AWS security finding into a controlled infrastructure change.
+
+The workflow focused on enforcing secure transport for Amazon S3 bucket access through a Terraform-managed bucket policy.
+
+The implementation and validation included:
+
+- Generation of a remediation proposal from a real S3 security finding.
+- Creation and review of a Terraform execution plan before applying changes.
+- Validation that the plan contained the expected infrastructure change.
+- Controlled execution through the remediation execution engine.
+- Direct verification of the resulting S3 bucket policy.
+- Recording of execution and verification evidence.
+
+The successful remediation demonstrated that the platform could progress beyond generating proposals and execute a controlled AWS security change, followed by independent configuration verification.
