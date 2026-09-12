@@ -1,0 +1,68 @@
+{
+  "catalog_id": "AWS-S3-REQUIRE-TLS-001",
+  "version": "1.0",
+  "name": "Require TLS for S3 bucket requests",
+  "description": "Require all requests to an S3 bucket and its objects to use secure transport.",
+  "cloud_provider": "aws",
+  "resource_type": "AWS::S3::Bucket",
+  "finding_match": {
+    "security_control_id": "S3.5",
+    "title_contains": "require requests to use TLS",
+    "severity_supported": [
+      "INFORMATIONAL",
+      "LOW",
+      "MEDIUM",
+      "HIGH",
+      "CRITICAL"
+    ]
+  },
+  "remediation": {
+    "summary": "Add an S3 bucket policy that denies requests when secure transport is not used.",
+    "rationale": "Requiring TLS protects data in transit between clients and Amazon S3.",
+    "desired_configuration": {
+      "deny_insecure_transport": true,
+      "condition": {
+        "key": "aws:SecureTransport",
+        "operator": "Bool",
+        "value": "false"
+      },
+      "resources": [
+        "bucket_arn",
+        "bucket_arn/*"
+      ]
+    },
+    "execution_method": "terraform",
+    "execution_status": "proposal_only"
+  },
+  "risk_assessment": {
+    "risk_level": "low",
+    "potential_side_effects": [
+      "Clients or applications using unencrypted HTTP requests will be denied access.",
+      "Applications must use HTTPS endpoints to access the bucket."
+    ],
+    "preconditions": [
+      "Confirm the target bucket identity and AWS account.",
+      "Confirm the bucket is managed by Terraform.",
+      "Inspect the existing bucket policy for compatibility.",
+      "Review the Terraform plan before applying changes."
+    ]
+  },
+  "governance": {
+    "approval_required": true,
+    "approval_status": "pending",
+    "execution_allowed": false
+  },
+  "validation": {
+    "method": "Inspect the live bucket policy and verify the explicit deny for requests where aws:SecureTransport is false.",
+    "success_criteria": [
+      "The bucket policy contains a Deny statement for insecure transport.",
+      "The Deny statement covers both the bucket ARN and bucket objects.",
+      "HTTPS requests are not denied by this statement.",
+      "Security Hub control S3.5 reports PASSED after reassessment."
+    ]
+  },
+  "rollback": {
+    "strategy": "Restore the previously approved bucket policy through Terraform.",
+    "warning": "Do not remove existing bucket-policy protections as part of rollback without explicit review and approval."
+  }
+}
