@@ -446,3 +446,63 @@ Security Hub S3.5 Finding
   → Security Hub Reassessment
 
 This milestone demonstrated a successful controlled S3 TLS remediation through the platform execution workflow. It established an end-to-end implementation path from a real finding to independently verified configuration compliance.
+## 14. Remediation Reconciliation and Evidence Validation
+
+This milestone introduced a reconciliation workflow for evaluating whether a remediation proposal has supporting execution and verification evidence and whether the corresponding Security Hub finding reflects the expected security state.
+
+The reconciliation component provides a structured way to connect proposal records, execution events, direct verification results, and Security Hub status.
+
+### 14.1 Evidence Correlation
+
+The reconciliation workflow validates that evidence belongs to the expected remediation operation.
+
+Evidence is correlated using identifying attributes including:
+
+- Proposal ID.
+- Finding ID.
+- Resource ID.
+- AWS account.
+- AWS region.
+
+This prevents unrelated execution or verification records from being treated as evidence for the proposal being reconciled.
+
+### 14.2 Execution Evidence Validation
+
+Execution evidence must establish that the expected remediation was successfully applied.
+
+An execution event marked as APPLIED must include a completion timestamp. The reconciliation process evaluates the execution evidence rather than assuming that proposal approval or plan generation means infrastructure was changed.
+
+### 14.3 Verification Evidence Validation
+
+Verification evidence must establish that the expected security configuration was independently checked.
+
+For the S3 TLS workflow, the evidence includes the direct bucket-policy verification result and the corresponding Security Hub control status.
+
+The reconciliation logic checks the expected execution and verification states and requires valid timestamps. Verification must occur at or after the recorded execution completion time.
+
+Timestamps are parsed as timezone-aware values so that malformed or ambiguous timestamps cannot silently satisfy chronology checks.
+
+### 14.4 Security Hub Reconciliation
+
+Direct cloud configuration verification and Security Hub status are evaluated as distinct evidence sources.
+
+The reconciliation workflow checks whether the expected Security Hub control status is available alongside the direct verification evidence. This supports a more complete assessment of whether the remediation is reflected in the security monitoring system.
+
+### 14.5 Controlled Reconciliation and Auditability
+
+The reconciliation process validates evidence before applying a reconciliation decision.
+
+Applying a reconciliation result is an explicit operation rather than an automatic consequence of generating a proposal or collecting evidence. Reconciliation activity is recorded to preserve an auditable history.
+
+### 14.6 Architectural Workflow
+
+Remediation Proposal
+  → Execution Evidence
+  → Direct Verification Evidence
+  → Security Hub Control Status
+  → Identity and Chronology Validation
+  → Reconciliation Decision
+  → Reconciliation Audit Record
+
+This milestone strengthened the platform's ability to establish evidence-backed remediation outcomes and distinguish successful execution from verified and reconciled resolution.
+
