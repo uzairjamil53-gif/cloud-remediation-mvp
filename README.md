@@ -176,3 +176,20 @@ The implementation introduced:
 - Explicit application controls and audit evidence for reconciliation operations.
 
 This milestone strengthened the platform's ability to distinguish between a remediation that was merely executed and one whose successful outcome was independently verified and reconciled with the original security finding.
+
+## EC2 Default Security Group Remediation Proposals
+
+This milestone expanded the remediation platform to address AWS EC2 default security group misconfigurations.
+
+The objective was to extend the proposal-generation framework beyond S3 and demonstrate how the platform could handle remediation requirements for additional AWS resource types.
+
+The implementation introduced:
+
+- A dedicated EC2 default security group proposal generator.
+- Identification and processing of relevant Security Hub EC2.2 findings.
+- Evaluation of default security group configuration and remediation prerequisites.
+- Structured remediation proposals for closing unrestricted default security group access.
+- Resource-specific verification capabilities.
+- Unit tests covering EC2 default security group proposal generation.
+
+This milestone demonstrated the extensibility of the remediation framework across different AWS resource types. The EC2.2 workflow established proposal-generation and verification capabilities; proposal generation did not itself constitute an executed remediation.
