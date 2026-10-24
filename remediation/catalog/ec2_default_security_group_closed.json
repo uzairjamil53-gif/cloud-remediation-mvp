@@ -1,0 +1,56 @@
+
+{
+  "catalog_id": "AWS-EC2-DEFAULT-SECURITY-GROUP-CLOSED-001",
+  "version": "1.0",
+  "resource_type": "AWS::EC2::SecurityGroup",
+  "finding_match": {
+    "security_control_id": "EC2.2",
+    "title_contains": "default security groups should not allow inbound or outbound traffic",
+    "severities": [
+      "HIGH",
+      "CRITICAL"
+    ]
+  },
+  "remediation": {
+    "summary": "Remove all inbound and outbound rules from the VPC default security group.",
+    "desired_configuration": {
+      "inbound_rules": [],
+      "outbound_rules": []
+    },
+    "execution_method": "requires_approved_management_mechanism",
+    "execution_status": "proposal_only"
+  },
+  "risk": {
+    "level": "HIGH",
+    "potential_side_effects": [
+      "Connectivity loss for resources relying on the default security group",
+      "Disruption of workloads using the default security group for inbound communication",
+      "Disruption of workloads using the default security group for outbound communication"
+    ]
+  },
+  "preconditions": [
+    "Refresh the live Security Hub finding before generating a proposal.",
+    "Inspect the current inbound and outbound security group rules.",
+    "Identify current and potential dependencies on the default security group.",
+    "Identify the approved management mechanism for the resource.",
+    "Review the expected connectivity impact.",
+    "Obtain explicit approval through the applicable change management process before execution."
+  ],
+  "governance": {
+    "approval_required": true,
+    "approval_status": "PENDING",
+    "execution_allowed": false
+  },
+  "validation": {
+    "checks": [
+      "Confirm that the security group has no inbound rules.",
+      "Confirm that the security group has no outbound rules.",
+      "Confirm that Security Hub EC2.2 is PASSED after reassessment."
+    ]
+  },
+  "rollback": {
+    "strategy": "Restore the previously documented and approved inbound and outbound rules.",
+    "requires_approval": true,
+    "automatic_rollback_allowed": false
+  }
+}
