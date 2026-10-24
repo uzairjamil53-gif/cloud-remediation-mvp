@@ -506,3 +506,43 @@ Remediation Proposal
 
 This milestone strengthened the platform's ability to establish evidence-backed remediation outcomes and distinguish successful execution from verified and reconciled resolution.
 
+## 15. EC2 Default Security Group Remediation Proposals
+
+This milestone expanded remediation proposal generation to address AWS EC2 default security group findings, specifically Security Hub control EC2.2.
+
+The implementation introduced a resource-aware workflow for identifying the affected security group, evaluating its configuration, and generating a structured remediation proposal.
+
+### 15.1 Finding and Resource Identification
+
+The workflow processes an EC2.2 Security Hub finding and identifies the affected default security group and its associated VPC.
+
+Resource identification provides the context required to evaluate the security group and determine the appropriate remediation action.
+
+### 15.2 Remediation Prerequisite Evaluation
+
+The proposal-generation component evaluates the target security group's configuration and relevant prerequisites before constructing a remediation proposal.
+
+This helps ensure that a proposed action is based on the identified resource and its observed configuration rather than relying only on the finding title or control identifier.
+
+### 15.3 Proposal Generation
+
+The EC2.2 proposal generator creates a structured remediation proposal describing the intended corrective action.
+
+The proposal remains separate from infrastructure execution. Generating an EC2.2 proposal does not modify the security group or establish that the finding has been remediated.
+
+### 15.4 Verification Boundaries
+
+The implementation includes proposal-generation and verification capabilities for the EC2.2 workflow.
+
+However, a completed live EC2.2 remediation through the general controlled execution pipeline has not been established. The architecture therefore treats EC2.2 as an implemented proposal workflow rather than a completed end-to-end execution demonstration.
+
+### 15.5 Architectural Workflow
+
+Security Hub EC2.2 Finding
+  → Default Security Group Identification
+  → VPC and Resource Context
+  → Remediation Prerequisite Evaluation
+  → EC2.2 Proposal Generation
+  → Proposal Review and Future Execution
+
+This milestone expanded the platform's remediation coverage beyond S3 and established an additional resource-specific proposal workflow for EC2 security findings.
