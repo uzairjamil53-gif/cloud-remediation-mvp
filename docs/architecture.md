@@ -605,3 +605,90 @@ Security Finding
   → Evidence Reconciliation and Audit
 
 This milestone completed the Phase 9 hardening and acceptance review. The MVP demonstrated a controlled, independently verified S3.5 remediation workflow while continuing to expand resource-specific proposal and verification capabilities.
+## 17. Final Architecture and Capability Consolidation
+
+As of November 22, 2026, the Cloud Remediation MVP has evolved from an initial AWS security baseline into a finding-driven remediation platform with resource inventory, proposal generation, governance records, controlled execution, independent verification, and evidence reconciliation.
+
+The architecture is designed around the principle that identifying a security finding is only the beginning of remediation. A useful remediation platform must also establish which resource is affected, determine an appropriate corrective action, control infrastructure changes, verify the resulting configuration, and preserve evidence of the outcome.
+
+### 17.1 Consolidated Architecture
+
+The current architecture consists of the following logical stages:
+
+1. **Finding ingestion:** Retrieve and normalize security findings from AWS Security Hub.
+2. **Resource identification:** Discover AWS infrastructure resources and associate findings with inventory records.
+3. **Remediation evaluation:** Evaluate supported remediation actions using finding and resource context.
+4. **Proposal generation:** Produce structured remediation proposals without modifying infrastructure.
+5. **Governance and review:** Record proposal review decisions and their supporting rationale.
+6. **Execution preparation:** Generate and inspect Terraform plans for supported infrastructure changes.
+7. **Controlled execution:** Validate execution scope and require explicit authorization before applying changes.
+8. **Independent verification:** Check the resulting cloud configuration against the expected security condition.
+9. **Security Hub reassessment:** Evaluate whether the security finding reflects the updated resource state.
+10. **Evidence reconciliation:** Correlate proposal, execution, verification, and Security Hub evidence and preserve the reconciliation record.
+
+### 17.2 Logical Component Relationships
+
+AWS Security Hub
+  → Finding Adapter
+  → Finding Normalization
+  → Resource Inventory and Matching
+  → Remediation Proposal Generation
+  → Governance and Review Records
+  → Terraform Plan Validation
+  → Controlled Execution Engine
+  → Cloud Configuration Verification
+  → Security Hub Reassessment
+  → Evidence Reconciliation and Audit
+
+These stages represent logical responsibilities. They do not imply that every component is fully integrated into one automated workflow or that every remediation type supports the same execution path.
+
+### 17.3 Current Implementation Scope
+
+The MVP currently focuses on AWS and includes:
+
+- Security Hub finding ingestion.
+- AWS resource inventory and finding matching.
+- Synthetic and real-finding proposal generation.
+- Structured remediation catalog entries.
+- Governance and review records.
+- Terraform plan validation and controlled execution safeguards.
+- Direct S3 configuration verification.
+- EC2 default security group proposal-generation capabilities.
+- Security Hub status evaluation and remediation evidence reconciliation.
+- Unit tests covering implemented application behavior.
+
+The S3.5 TLS enforcement workflow provides the principal end-to-end demonstration of the controlled execution architecture. The S3.13 lifecycle remediation provides an additional live remediation and verification result, but was not established as having followed the same general execution-engine pipeline.
+
+EC2.2 proposal generation and verification capabilities have been developed, but a completed live remediation through the general controlled execution pipeline has not been demonstrated.
+
+### 17.4 Architectural Boundaries and Limitations
+
+The current implementation is an AWS-focused MVP rather than a completed multi-cloud remediation service.
+
+Resource discovery and infrastructure management identification depend on available inventory and metadata. The platform does not automatically discover every external infrastructure-as-code repository or management system.
+
+Governance review records and execution authorization remain distinct responsibilities. A recorded review decision should not be interpreted as automatic authorization to modify infrastructure.
+
+Proposal generation, successful execution, direct configuration verification, and Security Hub reassessment are separate states. Evidence from one stage should not be treated as proof that every subsequent stage has completed.
+
+The platform's supported remediation catalog and execution workflows are limited to implemented and tested scenarios.
+
+### 17.5 Future Architectural Direction
+
+Future development can extend the architecture toward:
+
+- Azure and GCP finding ingestion and resource inventory.
+- Cloud-specific remediation execution adapters behind a common orchestration interface.
+- Broader resource ownership and infrastructure management intelligence.
+- Additional remediation catalog coverage.
+- More extensive governance and approval integration.
+- Expanded verification and reconciliation workflows.
+- Improved operational monitoring, reporting, and audit capabilities.
+
+These are architectural directions, not claims of completed implementation.
+
+### 17.6 Architectural Objective
+
+The long-term objective is to provide a cloud-agnostic remediation control plane that transforms security findings into governed, executable, and independently verifiable remediation outcomes across multi-cloud infrastructure.
+
+The MVP establishes an initial implementation of this approach through AWS Security Hub integration, resource-aware proposal generation, controlled Terraform execution, direct verification, and evidence-based reconciliation.
